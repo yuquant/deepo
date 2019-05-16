@@ -9,11 +9,9 @@ FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     PIP_INSTALL="python -m pip --no-cache-dir install --upgrade" && \
     GIT_CLONE="git clone --depth 10" && \
-
     rm -rf /var/lib/apt/lists/* \
            /etc/apt/sources.list.d/cuda.list \
            /etc/apt/sources.list.d/nvidia-ml.list && \
-
     apt-get update && \
 
 # ==================================================================
@@ -28,7 +26,6 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         git \
         vim \
         && \
-
     $GIT_CLONE https://github.com/Kitware/CMake ~/cmake && \
     cd ~/cmake && \
     ./bootstrap && \
@@ -56,14 +53,11 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
     $PIP_INSTALL \
         setuptools \
         && \
-    $PIP_INSTALL \
-        Cython \
-
-
+#    $PIP_INSTALL \
+#        Cython \
 # ==================================================================
 # config & cleanup
 # ------------------------------------------------------------------
-
     ldconfig && \
     apt-get clean && \
     apt-get autoremove && \
